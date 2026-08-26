@@ -41,4 +41,3 @@ The app uses React state and browser localStorage because the challenge is inten
 ## Future Improvements
 
 A production version could add authentication, server synchronization, cloud backup/export, shared devices, actual reminders, notifications, richer history views, and conflict resolution.
-"# entrata_task_1" 
