@@ -1131,4 +1131,4 @@ Prompt - 8 :
 some text is not properly visible in dark mode, fix it
 
 Prompt - 9 :
-The text is overflowd from the box as shown in image, fix it
+The text is overflowd from the box as shown in image, fix it.
