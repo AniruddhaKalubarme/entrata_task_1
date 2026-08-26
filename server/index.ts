@@ -17,6 +17,7 @@ database.exec(`CREATE TABLE IF NOT EXISTS habits (id TEXT PRIMARY KEY, name TEXT
 const app = express()
 app.use(cors({ origin: process.env.CLIENT_ORIGIN ?? true }))
 app.use(express.json({ limit: '1mb' }))
+app.get('/', (_request, response) => response.json({ name: 'Daymark Habit API', health: '/api/health', habits: '/api/habits' }))
 
 const validHabit = (value: unknown): value is Habit => {
   if (!value || typeof value !== 'object') return false

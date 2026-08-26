@@ -1,0 +1,61 @@
+.summary-grid > div {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.summary-intro strong,
+.metric strong {
+  display: block;
+  max-width: 100%;
+  line-height: 1;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.summary-intro > span,
+.metric span,
+.metric b {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.habit-title-row > div:first-child,
+.section-heading > div:first-child {
+  min-width: 0;
+}
+
+.habit-title-row h3,
+.section-heading h2,
+.notes {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.week-controls span {
+  min-width: 0;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 700px) {
+  .summary-grid > div {
+    min-width: 0;
+  }
+
+  .summary-intro strong {
+    font-size: clamp(32px, 11vw, 40px);
+  }
+
+  .metric strong {
+    font-size: clamp(26px, 9vw, 33px);
+  }
+
+  .habit-title-row {
+    min-width: 0;
+  }
+
+  .habit-title-row h3 {
+    line-height: 1.15;
+  }
+}

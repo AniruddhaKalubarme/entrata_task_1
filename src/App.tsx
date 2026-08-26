@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
 import type { Habit, HabitDraft, Frequency, HabitCategory } from './types'
 import { addDays, dateKey, formatWeekRange, getWeekDates, startOfWeek, todayKey } from './lib/dates'
@@ -20,9 +20,10 @@ function App() {
   const [query, setQuery] = useState('')
   const [categoryFilter, setCategoryFilter] = useState('All')
   const [sortBy, setSortBy] = useState('custom')
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem('daymark-theme') === 'dark')
   const [showInsights, setShowInsights] = useState(false)
   const [monthAnchor, setMonthAnchor] = useState(new Date())
+  useEffect(() => { localStorage.setItem('daymark-theme', darkMode ? 'dark' : 'light') }, [darkMode])
   const weekDates = getWeekDates(weekAnchor)
   const activeHabits = habits.filter(habit => habit.archived === showArchived).filter(habit => habit.name.toLowerCase().includes(query.toLowerCase())).filter(habit => categoryFilter === 'All' || habit.category === categoryFilter).sort((a, b) => sortBy === 'name' ? a.name.localeCompare(b.name) : sortBy === 'streak' ? (calculateDailyStreak(b) - calculateDailyStreak(a)) : 0)
   const currentWeekHabits = habits.filter(habit => !habit.archived)

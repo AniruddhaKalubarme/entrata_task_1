@@ -1,0 +1,48 @@
+.dark-mode {
+  color: var(--ink);
+}
+
+.dark-mode .brand,
+.dark-mode .hero h1,
+.dark-mode .section-heading h2,
+.dark-mode .habit-title-row h3,
+.dark-mode .summary-intro strong,
+.dark-mode .metric strong,
+.dark-mode .week-row > strong,
+.dark-mode .week-header b,
+.dark-mode .month-day > span,
+.dark-mode .modal h2,
+.dark-mode .modal label,
+.dark-mode .modal legend {
+  color: var(--ink);
+}
+
+.dark-mode .modal input,
+.dark-mode .modal textarea,
+.dark-mode .modal select {
+  color: var(--ink);
+  background: #18251f;
+}
+
+.dark-mode .month-day.outside {
+  color: #6f887b;
+}
+
+.dark-mode .header-meta,
+.dark-mode .metric span,
+.dark-mode .metric b,
+.dark-mode .summary-intro > span,
+.dark-mode .notes,
+.dark-mode .streak,
+.dark-mode .mini-progress > div:first-child,
+.dark-mode .calendar-caption {
+  color: var(--muted);
+}
+
+.dark-mode .brand-mark {
+  color: #10231b;
+}
+
+.dark-mode .hero h1 em {
+  color: #ff8a70;
+}

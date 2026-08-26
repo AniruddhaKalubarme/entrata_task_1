@@ -1,6 +1,6 @@
 import type { Habit } from '../types'
 
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3001/api'
+const API_URL = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? '/api' : 'http://localhost:3001/api')
 
 const request = async <T>(path: string, options?: RequestInit): Promise<T> => {
   const response = await fetch(`${API_URL}${path}`, { headers: { 'Content-Type': 'application/json' }, ...options })
