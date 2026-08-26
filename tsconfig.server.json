@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": { "noEmit": true, "module": "NodeNext", "moduleResolution": "NodeNext", "types": ["node"] },
+  "include": ["server"]
+}
