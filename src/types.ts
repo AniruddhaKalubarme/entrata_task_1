@@ -1,8 +1,10 @@
 export type Frequency = 'daily' | 'weekly'
+export type HabitCategory = 'Health' | 'Mind' | 'Growth' | 'Life'
 
 export interface Habit {
   id: string
   name: string
+  category?: HabitCategory
   frequency: Frequency
   notes?: string
   createdAt: string
@@ -14,6 +16,7 @@ export interface Habit {
 
 export interface HabitDraft {
   name: string
+  category?: HabitCategory
   frequency: Frequency
   notes: string
   targetCompletions: number

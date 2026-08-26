@@ -1,7 +1,8 @@
-import type { Habit, HabitDraft } from '../types'
+import type { Habit, HabitDraft, HabitCategory } from '../types'
 import { addDays, dateKey, daysBetween, isFutureKey, parseKey, startOfWeek, weekKey } from './dates'
 
 export const STORAGE_KEY = 'habit-tracker-data'
+export const categories: HabitCategory[] = ['Health', 'Mind', 'Growth', 'Life']
 
 export function calculateDailyStreak(habit: Habit, today = new Date()): number {
   const completed = Object.entries(habit.completions)
@@ -61,7 +62,7 @@ export function normalizeHabits(value: unknown): Habit[] {
     const candidate = item as Partial<Habit>
     if (typeof candidate.id !== 'string' || typeof candidate.name !== 'string' || !['daily', 'weekly'].includes(candidate.frequency ?? '')) return []
     const completions = candidate.completions && typeof candidate.completions === 'object' ? Object.fromEntries(Object.entries(candidate.completions).filter(([key, count]) => /^\d{4}-\d{2}-\d{2}$/.test(key) && typeof count === 'number' && Number.isFinite(count) && count > 0).map(([key, count]) => [key, Math.floor(count as number)])) : {}
-    return [{ id: candidate.id, name: candidate.name.trim(), frequency: candidate.frequency as Habit['frequency'], notes: typeof candidate.notes === 'string' ? candidate.notes : '', createdAt: typeof candidate.createdAt === 'string' ? candidate.createdAt : new Date().toISOString(), updatedAt: typeof candidate.updatedAt === 'string' ? candidate.updatedAt : new Date().toISOString(), archived: candidate.archived === true, targetCompletions: candidate.frequency === 'weekly' ? Math.min(7, Math.max(1, Math.floor(candidate.targetCompletions ?? 1))) : undefined, completions }]
+    return [{ id: candidate.id, name: candidate.name.trim(), category: categories.includes(candidate.category as HabitCategory) ? candidate.category as HabitCategory : 'Life', frequency: candidate.frequency as Habit['frequency'], notes: typeof candidate.notes === 'string' ? candidate.notes : '', createdAt: typeof candidate.createdAt === 'string' ? candidate.createdAt : new Date().toISOString(), updatedAt: typeof candidate.updatedAt === 'string' ? candidate.updatedAt : new Date().toISOString(), archived: candidate.archived === true, targetCompletions: candidate.frequency === 'weekly' ? Math.min(7, Math.max(1, Math.floor(candidate.targetCompletions ?? 1))) : undefined, completions }]
   })
 }
 

@@ -11,6 +11,9 @@ Daymark is a focused habit tracker for building consistency without accounts, se
 - Optional notes/reminder text (no notification scheduling)
 - Defensive localStorage parsing and persistence
 - Responsive layout with keyboard-friendly semantic controls
+- Search, category filtering, sorting, and optional dark mode
+- Monthly history calendar with session totals and insight metrics
+- JSON export/import for local backup and transfer
 
 ## Setup & Running
 

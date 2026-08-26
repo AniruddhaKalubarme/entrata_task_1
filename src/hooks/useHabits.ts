@@ -10,7 +10,7 @@ export function useHabits() {
   const update = (id: string, change: (habit: Habit) => Habit) => setHabits(current => current.map(habit => habit.id === id ? change(habit) : habit))
   const add = (draft: HabitDraft) => {
     const now = new Date().toISOString()
-    setHabits(current => [...current, { ...draft, name: draft.name.trim(), notes: draft.notes.trim(), id: crypto.randomUUID(), createdAt: now, updatedAt: now, archived: false, completions: {} }])
+    setHabits(current => [...current, { ...draft, category: draft.category ?? 'Life', name: draft.name.trim(), notes: draft.notes.trim(), id: crypto.randomUUID(), createdAt: now, updatedAt: now, archived: false, completions: {} }])
   }
   return { habits, storageMessage, add, update, setHabits }
 }

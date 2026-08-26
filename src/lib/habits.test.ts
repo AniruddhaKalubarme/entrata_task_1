@@ -1,6 +1,7 @@
 import { describe, expect, it, beforeEach } from 'vitest'
 import type { Habit } from '../types'
 import { calculateDailyStreak, calculateWeeklyStreak, getWeeklyProgress, loadHabits, normalizeHabits, saveHabits, validateHabitDraft } from './habits'
+import { completionRate, exportHabits, longestDailyStreak, totalCompletions } from './analytics'
 
 const habit = (completions: Record<string, number>, extra: Partial<Habit> = {}): Habit => ({ id: 'test', name: 'Test', frequency: 'daily', createdAt: '', updatedAt: '', archived: false, completions, ...extra })
 
@@ -50,5 +51,19 @@ describe('persistence', () => {
     localStorage.setItem('habit-tracker-data', '{nope')
     expect(loadHabits().habits).toEqual([])
     expect(loadHabits().error).toBe(true)
+  })
+})
+
+describe('habit insights and export', () => {
+  it('calculates history metrics without counting future sessions', () => {
+    const tracked = habit({ '2026-08-24': 1, '2026-08-25': 2, '2026-08-27': 4 }, { createdAt: '2026-08-20T00:00:00.000Z' })
+    expect(totalCompletions(tracked)).toBe(3)
+    expect(longestDailyStreak(tracked)).toBe(2)
+    expect(completionRate(tracked)).toBeGreaterThan(0)
+  })
+  it('exports a versioned JSON document', () => {
+    const output = JSON.parse(exportHabits([habit({})]))
+    expect(output.version).toBe(1)
+    expect(output.habits).toHaveLength(1)
   })
 })
